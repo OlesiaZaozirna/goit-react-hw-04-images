@@ -13,4 +13,5 @@ function ImageGalleryItem({ url, alt, showModal, largeImage})  {
             </li>
     )
 }
+
 export default ImageGalleryItem;
