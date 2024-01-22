@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import Searchbar from "./Searchbar/Searchbar"
 import { getImages } from '../api/api'
 import ImageGallery from './ImageGallery/ImageGallery';
@@ -18,7 +18,9 @@ const App = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   const [largeImage, setLargeImage] = useState('');
 
-   useEffect(() => {
+  useEffect(() => {
+    if (!query) return;
+    
     const fetchData = async () => {
       setIsLoading(true);
 
@@ -36,10 +38,9 @@ const App = () => {
       } finally {
         setIsLoading(false);
       }
-     };
-     if (query) {
-      fetchData();
-    }
+    };
+    
+    fetchData();
   }, [query, page]);
   
 
@@ -49,7 +50,6 @@ const App = () => {
       setImages([]);
       setPage(1);
     }
-    
   }
 
   const handleLoadMore = () => {
