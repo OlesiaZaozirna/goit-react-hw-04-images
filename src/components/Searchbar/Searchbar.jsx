@@ -1,29 +1,26 @@
-import { Component } from "react";
+import { useState } from "react";
 import css from './Searchbar.module.css'
 import { BsSearch } from 'react-icons/bs';
 
-class Searchbar extends Component {
-
-    state = {
-        query: "",  
-    }
+const Searchbar = ({ onSubmit }) => {
+  
+const [query, setQuery] = useState('');
     
     
-     handleChange = (e) => {
-    this.setState({ query: e.currentTarget.value.trim().toLowerCase() }); 
+     const handleChange = (e) => {
+    setQuery(e.currentTarget.value.trim().toLowerCase()); 
   };
 
   
-  handleSubmit = (e) => {
+ const handleSubmit = (e) => {
     e.preventDefault();  
-      this.props.onSubmit(this.state.query); 
-      this.setState({ query: '' }); 
+      onSubmit(query); 
+      setQuery(''); 
   };
 
-    render() {
-          return (
+      return (
         <header className={css.Searchbar}>
-        <form className={css.Form} onSubmit={this.handleSubmit}>
+        <form className={css.Form} onSubmit={handleSubmit}>
                       
                       <button type="submit" className={css.Button}>
                            <BsSearch />
@@ -36,14 +33,14 @@ class Searchbar extends Component {
             autoComplete="off"
             autoFocus
             placeholder="What images or photos do you whant find?"
-            value={this.state.query} 
-            onChange={this.handleChange}/>
+            value={query} 
+            onChange={handleChange}/>
             
         </form>
       </header>
     );
   }
-}
+
 
 export default Searchbar;
  

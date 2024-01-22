@@ -1,12 +1,9 @@
 import css from "./ImageGalleryItem.module.css";
 
 function ImageGalleryItem({ url, alt, showModal, largeImage})  {
-    const newLargeImage = {
-        largeImage: largeImage,
-    }
    
     return (
-        <li  className={css.ImageGalleryItem} onClick={()=>showModal(newLargeImage)}>
+        <li  className={css.ImageGalleryItem} onClick={()=>showModal(largeImage)}>
             
                 <img
                     src={url}
